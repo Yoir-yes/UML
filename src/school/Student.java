@@ -1,20 +1,17 @@
 package school;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Student {
     private String name;
     private String surname;
-    private LocalDateTime birthdate;
     private static int sciencePoints;
     private static int lifePoints;
 
     public Student(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        int life = lifePoints;
-        int science = sciencePoints;
     }
 
     public String getName() {
@@ -34,27 +31,16 @@ public class Student {
     }
 
 
-    public static void learn(LocalDateTime from, LocalDateTime to){
-        long sub = Duration.between(to,from).getSeconds();
-        int d = (int)sub;
-        d = d /60;
-        sciencePoints = (int) ((int)d*0.01);
+    public static void learn(LocalDate from, LocalDate to){
+        int dni = (int) ChronoUnit.DAYS.between(from, to);
+        sciencePoints=6*dni+sciencePoints;
     }
-    public static void party(LocalDateTime from, LocalDateTime to){
-        long sub = Duration.between(from,to).getSeconds();
-        int d = (int)sub;
-        d = d /60;
-        lifePoints = (int) ((int)d*0.01);
+    public static void party(LocalDate from, LocalDate to){
+        int dni = (int) ChronoUnit.DAYS.between(from, to);
+        lifePoints=lifePoints+9*dni;
     }
     public boolean isGoodStudent(){
         return sciencePoints>lifePoints;
-    }
-    public static int getSciencePoints() {
-        return sciencePoints;
-    }
-
-    public static int getLifePoints() {
-        return lifePoints;
     }
 
 }

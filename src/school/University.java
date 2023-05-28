@@ -1,21 +1,21 @@
 package school;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-    private static List<Student> students;
+    private static List<Student> students = new ArrayList<>();
 
-    public static Student addStudent(String name, String surname){
-        Student student = new Student(name,surname);
-        students.add(student);
-        return student;
+    public void addStudent(){
+        System.out.println("Dodano ucznia");
     }
-    public static Student getStudent(String name, String surname){
+    public Student getStudent(String name, String surname){
         for (Student student : students) {
             if (student.getName().equals(name) && student.getSurname().equals(surname)) {
-                return student;
+                System.out.println(student.getName()+" "+student.getSurname());
             }
         }
+        System.out.println("Nie znaleziono takiego ucznia");
         return null;
     }
     public boolean removeStudent(String name,String surname){
