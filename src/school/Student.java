@@ -7,12 +7,14 @@ public class Student {
     private String name;
     private String surname;
     private LocalDateTime birthdate;
-    private int sciencePoints;
-    private int lifePoints;
+    private static int sciencePoints;
+    private static int lifePoints;
 
     public Student(String name, String surname) {
         this.name = name;
         this.surname = surname;
+        int life = lifePoints;
+        int science = sciencePoints;
     }
 
     public String getName() {
@@ -32,21 +34,27 @@ public class Student {
     }
 
 
-    public void learn(LocalDateTime from, LocalDateTime to){
-        long sub = Duration.between(from,to).getSeconds();
-        sub = sub/60;
-        if(sub%5==0){
-            this.sciencePoints =+ 1;
-        }
+    public static void learn(LocalDateTime from, LocalDateTime to){
+        long sub = Duration.between(to,from).getSeconds();
+        int d = (int)sub;
+        d = d /60;
+        sciencePoints = (int) ((int)d*0.01);
     }
-    public void party(LocalDateTime from, LocalDateTime to){
+    public static void party(LocalDateTime from, LocalDateTime to){
         long sub = Duration.between(from,to).getSeconds();
-        sub = sub/60;
-        if(sub%5==0){
-            this.lifePoints =+ 1;
-        }
+        int d = (int)sub;
+        d = d /60;
+        lifePoints = (int) ((int)d*0.01);
     }
     public boolean isGoodStudent(){
         return sciencePoints>lifePoints;
     }
+    public static int getSciencePoints() {
+        return sciencePoints;
+    }
+
+    public static int getLifePoints() {
+        return lifePoints;
+    }
+
 }

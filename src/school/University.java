@@ -3,13 +3,14 @@ package school;
 import java.util.List;
 
 public class University {
-    private List<Student> students;
+    private static List<Student> students;
 
-    public void addStudent(String name, String surname){
+    public static Student addStudent(String name, String surname){
         Student student = new Student(name,surname);
         students.add(student);
+        return student;
     }
-    public Student getStudent(String name, String surname){
+    public static Student getStudent(String name, String surname){
         for (Student student : students) {
             if (student.getName().equals(name) && student.getSurname().equals(surname)) {
                 return student;
